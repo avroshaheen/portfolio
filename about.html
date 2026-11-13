@@ -23,6 +23,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        savedTheme || systemTheme
+      );
+    })();
+  </script>
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -173,7 +186,7 @@
       </a>
     </div>
   </footer>
-  <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/scripts.js" defer></script>
 </body>
 
 </html>

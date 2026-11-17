@@ -1,4 +1,4 @@
-# Hi, I'm Shahinur Rahman 👋
+# Hi, I'm Shahinur Rahman (Shahin) 👋
 
 ### WordPress Developer | Elementor Specialist
 
@@ -21,10 +21,12 @@ I also enjoy solving complex WordPress issues, developing custom plugins, optimi
 ### 🚀 Featured Projects
 
 **Professional Projects – IT Way BD**
+
 - [Veins Group](https://veins-group.com/)
 - [VMSS BD](https://vmssbd.com/)
 
 **Other Projects**
+
 - [Ventura Holdings BD](https://venturaholdingsbd.com/) – Corporate real estate website with property listings and dynamic features.
 - [Barta Bazar News](https://bartabazarnews.com/) – WordPress-based news portal developed with a custom plugin.
 - [Easy Jobs](https://easy-jobs-one.vercel.app/) – React-based job listing application with API integration.
@@ -36,10 +38,11 @@ I also enjoy solving complex WordPress issues, developing custom plugins, optimi
 
 ### 🌐 Connect With Me
 
-- **Portfolio:** [avroshaheen.github.io/portfolio-of-shaheen](https://avroshaheen.github.io/portfolio-of-shaheen)
+- **Portfolio:** [avroshaheen.github.io/portfolio](https://avroshaheen.github.io/portfolio)
 - **GitHub:** [@avroshaheen](https://github.com/avroshaheen)
 - **LinkedIn:** [Shahinur Rahman](https://linkedin.com/in/shahinurrahman26)
 - **Email:** [avroshaheen@gmail.com](mailto:avroshaheen@gmail.com)
+- **Whatsapp:** +8801611220007
 
 ---
 

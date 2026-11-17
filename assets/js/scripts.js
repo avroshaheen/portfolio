@@ -1,43 +1,31 @@
-
 // ==========================================
 // Theme Management
 // ==========================================
-
 const themeToggleBtn = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
-
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
   ? "dark"
   : "light";
-
 const savedTheme = localStorage.getItem("theme");
 const currentTheme =
   document.documentElement.getAttribute("data-theme") ||
   savedTheme ||
   systemTheme;
-
 // Ensure the current theme is applied
 document.documentElement.setAttribute("data-theme", currentTheme);
-
 updateThemeIcon(currentTheme);
-
 if (themeToggleBtn) {
   themeToggleBtn.addEventListener("click", () => {
     const activeTheme =
       document.documentElement.getAttribute("data-theme");
-
     const newTheme = activeTheme === "dark" ? "light" : "dark";
-
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-
     updateThemeIcon(newTheme);
   });
 }
-
 function updateThemeIcon(theme) {
   if (!themeIcon) return;
-
   if (theme === "dark") {
     // Sun Icon
     themeIcon.innerHTML = `
@@ -50,18 +38,13 @@ function updateThemeIcon(theme) {
     `;
   }
 }
-
-
 // ==========================================
 // Mobile Navigation Toggle
 // ==========================================
-
 const mobileToggleBtn = document.getElementById("mobile-toggle");
 const navLinks = document.getElementById("nav-links");
-
 function setMobileMenuIcon(isActive) {
   if (!mobileToggleBtn) return;
-
   if (isActive) {
     // Close Icon
     mobileToggleBtn.innerHTML = `
@@ -88,143 +71,59 @@ function setMobileMenuIcon(isActive) {
     `;
   }
 }
-
 if (mobileToggleBtn && navLinks) {
   mobileToggleBtn.addEventListener("click", () => {
     const isActive = navLinks.classList.toggle("active");
-
     document.body.style.overflow = isActive ? "hidden" : "";
-
     setMobileMenuIcon(isActive);
   });
-
   // Close mobile menu when a navigation link is clicked
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active");
       document.body.style.overflow = "";
-
       setMobileMenuIcon(false);
     });
   });
 }
-
-
 // ==========================================
 // Update Year in Footer
 // ==========================================
-
 const yearEl = document.getElementById("year");
-
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
-
-
 // ==========================================
 // Active Navigation Link
 // ==========================================
-
 const currentPage = location.pathname.split("/").pop() || "index.html";
-
 document.querySelectorAll(".nav-links a").forEach((link) => {
   const href = link.getAttribute("href");
-
   if (!href) return;
-
   link.classList.remove("active");
-
   const linkPage = href.split("/").pop();
-
   if (linkPage === currentPage) {
     link.classList.add("active");
   }
 });
-
-
-// ==========================================
-// Carousel Logic (About Page)
-// ==========================================
-
-const slideEls = document.querySelectorAll(".carousel-slide");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-
-if (slideEls.length && prevBtn && nextBtn) {
-  let index = 0;
-
-  slideEls[index].classList.add("active");
-
-  function goTo(i) {
-    slideEls[index].classList.remove("active");
-
-    index = (i + slideEls.length) % slideEls.length;
-
-    slideEls[index].classList.add("active");
-  }
-
-  prevBtn.addEventListener("click", () => goTo(index - 1));
-  nextBtn.addEventListener("click", () => goTo(index + 1));
-}
-
-
 // ==========================================
 // Contact Form Logic (Contact Page)
 // ==========================================
-
-// Frontend-only form.
-// No actual email is sent without a backend or form service.
-
-const contactForm = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
-const submitBtn = document.getElementById("submitBtn");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    if (!contactForm.checkValidity()) {
-      contactForm.reportValidity();
-      return;
-    }
-
-    // Simulated submission feedback
-    const btnSpan = submitBtn
-      ? submitBtn.querySelector("span")
-      : null;
-
-    const originalText = btnSpan ? btnSpan.textContent : "";
-
-    if (btnSpan) {
-      btnSpan.textContent = "Sending...";
-    }
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-    }
-
-    if (formStatus) {
-      formStatus.textContent = "";
-      formStatus.className = "form-status";
-    }
-
-    setTimeout(() => {
-      if (formStatus) {
-        formStatus.textContent =
-          "Thanks for your message! I'll get back to you soon.";
-
-        formStatus.className = "form-status success";
-      }
-
-      contactForm.reset();
-
-      if (btnSpan) {
-        btnSpan.textContent = originalText;
-      }
-
-      if (submitBtn) {
-        submitBtn.disabled = false;
-      }
-    }, 800);
-  });
-}
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const phone = '8801611220007';
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const formStatus = document.getElementById('formStatus');
+  if (!name || !message) {
+    formStatus.textContent = 'Please fill in your name and message.';
+    formStatus.style.color = '#dc3545';
+    return;
+  }
+  const text = `*New Contact Message*\n\n*Name:* ${name}\n*Message:* ${message}`;
+  const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  formStatus.textContent = 'Opening WhatsApp...';
+  formStatus.style.color = '#25D366';
+  window.open(whatsappUrl, '_blank');
+  this.reset();
+});
